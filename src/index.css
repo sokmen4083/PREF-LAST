@@ -5,9 +5,38 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  font-size: 25px;
+  background-color: rgb(211, 231, 190);
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.card{
+  min-height: 350px;
+}
+
+.card img{
+  float: left;
+  margin: 3px;
+}
+
+.card-text{
+  margin-top: 15px;
+  float: left;
+}
+
+.card .btn-primary{
+  position: absolute;
+  bottom : 2%;
+  left: 2%;
+  width: 96%
+}
+
+
+
+
+
