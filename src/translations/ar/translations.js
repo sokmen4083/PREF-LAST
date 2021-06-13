@@ -1,5 +1,6 @@
 export const TRANSLATIONS_AR = {
     document: 'مستندات',
+    language: 'اللغات',
     copy: 'حقوق النشر',
     creat: 'انشأ من قبل',
     PETITIONS: 'التماسات',

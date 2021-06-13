@@ -1,5 +1,6 @@
 export const TRANSLATIONS_TR = {
     document: 'EVRAKLAR',
+    language: 'DİLLER',
     copy: 'Telif hakları',
     creat: 'tarafından yapıldı',
     PETITIONS: 'DİLEKÇELER',

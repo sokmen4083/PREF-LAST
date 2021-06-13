@@ -1,5 +1,6 @@
 export const TRANSLATIONS_DE = {
     document: 'DOKUMENTS',
+    language: 'SPRACHEN',
     copy: 'Urheberrechte',
     creat: 'erstellt von',
     PETITIONS: 'PETITIONEN',

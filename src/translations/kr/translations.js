@@ -1,5 +1,6 @@
 export const TRANSLATIONS_KR = {
   document: 'BELGEYN',
+  language: 'ZIMAN',
   copy: 'Copyright',
   creat: 'afirandin ji hêla',
   PETITIONS: 'XWESTIN',

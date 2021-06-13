@@ -10,7 +10,7 @@ import { useTranslation } from 'react-i18next'
 export default function PrefDocuments() {
   const { t } = useTranslation()
     return (
-      <Jumbotron>
+      <Jumbotron className= 'jumbo'>
         <h1>{t('PETITIONS')}</h1>
         <p>
           {t('explain')}
