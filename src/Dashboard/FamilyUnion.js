@@ -229,7 +229,7 @@ doc.save('My-Document.pdf');
         
       <form>
           {this.createUI()}
-      <Button onClick={this.addClick.bind(this)}> {t('addkinder')} </Button>
+      <Button variant="warning" onClick={this.addClick.bind(this)}> {t('addkinder')} </Button>
       </form>
         </Col>
         <Col>
@@ -307,8 +307,8 @@ doc.save('My-Document.pdf');
         </div>
         </Col>
                <div>
-                 <p><input type="button" value={t('print')} id="print" onClick={this.sendToPrint} /></p>
-                <p><input type="button" value={t('download')} onClick={this.generatePDF} /></p>
+                 <p><Button onClick={this.sendToPrint} >{t('print')}</Button></p>
+                <p><Button variant="success" onClick={this.generatePDF} >{t('download')}</Button></p>
              </div>
 
             <img id="image" alt=""/>

@@ -40,7 +40,7 @@ export const TRANSLATIONS_IT = {
     wifeName: 'Il nome di tua moglie',
     wifeSurname: 'Il cognome di tua moglie',
     wifeBirthday: 'Il compleanno di tua moglie',
-    addkinder: 'Aggiungi il tuo Kinder',
+    addkinder: 'Aggiungi Bambino',
     print: 'STAMPA',
     download: 'Scarica il PDF',
     your: 'Il tuo',

@@ -40,7 +40,7 @@ export const TRANSLATIONS_AR = {
     wifeName: 'اسم زوجتك',
     wifeSurname: 'لقب زوجتك',
     wifeBirthday: 'عيد ميلاد زوجتك',
-    addkinder: 'أضف كيندر الخاص بك',
+    addkinder: 'أضف الطفل',
     print: 'مطبعة',
     download: 'تحميل PDF',
     your: 'لك',

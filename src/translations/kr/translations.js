@@ -40,7 +40,7 @@ export const TRANSLATIONS_KR = {
   wifeName: 'Navê Jina We',
   wifeSurname: 'Paşnavê Jina We',
   wifeBirthday: 'Rojbûna Jina We',
-  addkinder: 'Zarok-a xwe zêde bikin',
+  addkinder: 'Zarokê Zêde Bikin',
   print: 'ÇAP',
   download: 'PDF-ê dakêşin',
   your: 'Ya te',

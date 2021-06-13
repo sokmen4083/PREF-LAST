@@ -40,7 +40,7 @@ export const TRANSLATIONS_TR = {
     wifeName: 'Eşinizin Adı',
     wifeSurname: 'Eşinizin Soyadı',
     wifeBirthday: 'Eşinizin Doğum Tarihi',
-    addkinder: 'Cocuklarınızı ekleyin',
+    addkinder: 'Çocuk Ekle',
     print: 'YAZDIR',
     download: 'PDF İndir',
     your: '',

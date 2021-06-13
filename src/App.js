@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route, Link } from 'react-router-dom';
 import Family   from './Dashboard/FamilyUnion';
 import './Dashboard/PrefDocuments';
 import logo from './logom.png';
-import { Container, Row, Col, Navbar, Nav,NavDropdown } from 'react-bootstrap';
+import { Container, Row, Col, Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { FileCombination } from './Dashboard/FileCombination';
 import { CantonChange } from './Dashboard/CantonChange';
 import { CampChange } from './Dashboard/CampChange';
@@ -80,11 +80,12 @@ function App() {
           </Row>
           <Row>
             <Col>
-                    <Route path='/'  component={PrefDocuments}/>
+                    <Route path='/PrefDocuments'  component={PrefDocuments}/>
                     <Route path='/FamilyUnion' component={Family}/>                   
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
                     <Route path='/CampChange' component={CampChange}/>
+                    <Route path='/' exact={true}  component={PrefDocuments}/>
             </Col>
           </Row>
         </Container>
