@@ -84,7 +84,7 @@ function App() {
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
                     <Route path='/CampChange' component={CampChange}/>
-                    <Route path='/' exact={true}  component={PrefDocuments}/>
+                    <Route path='/'  component={PrefDocuments}/>
             </Col>
           </Row>
         </Container>
