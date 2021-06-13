@@ -80,7 +80,6 @@ function App() {
           </Row>
           <Row>
             <Col>
-                    <Route path='/PrefDocuments'  component={PrefDocuments}/>
                     <Route path='/FamilyUnion' component={Family}/>                   
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
