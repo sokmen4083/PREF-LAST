@@ -1,6 +1,7 @@
 export const TRANSLATIONS_EN = {
     document: 'DOCUMENTS',
     language: 'LANGUAGES',
+    info: 'No information is stored on this page.',
     copy: 'Copyright',
     creat: 'created by',
     PETITIONS: 'PETITIONS',

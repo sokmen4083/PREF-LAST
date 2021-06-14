@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { Jumbotron, Form, Row, Col, Button} from 'react-bootstrap';
+import SelectCountry from './SelectCountry'
+import { Jumbotron, Form, Row, Col, Button, Card, Container} from 'react-bootstrap';
 import jsPDF from 'jspdf';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next'
@@ -38,7 +39,7 @@ import { withTranslation } from 'react-i18next'
         usersecondchildsname: '',
         usersecondchildbirthday: Date,
         values: [],
-        valuesbirthday: [],
+        valuesbirthday: [Date],
       };
   }
   createUI(){
@@ -47,11 +48,11 @@ import { withTranslation } from 'react-i18next'
         <div key={i}>
           <Form.Group controlId="formBasicEmail">
           <Form.Label>{t('your')} {i+1}. {t('childName')}</Form.Label>
-         <Form.Control type="text" value={el||''} placeholder={t('child')} name="userfirstchildname" onChange={this.handleNameChange.bind(this, i)} />
+         <Form.Control type="text" name="values[i]" placeholder={t('child')}  onChange={this.myChangeHandler.bind(this, i)} />
          </Form.Group>
          <Form.Group controlId="formBasicEmail">
           <Form.Label>{t('your')} {i+1}. {t('childBirthday')}</Form.Label>
-         <Form.Control type="date" value={el||''}  onChange={this.handleBirthdayChange.bind(this, i)} />
+         <Form.Control type="date" name="valuesbirthday[i]" onChange={this.myChangeBirthday.bind(this, i)} />
          </Form.Group>
         </div>
                  
@@ -62,26 +63,12 @@ import { withTranslation } from 'react-i18next'
  createUIListName(){
   return this.state.values.map((el, i) => 
       <div key={i}>
-       <li  value={el||''} onChange={this.handleNameChange.bind(this, i)}> <mark> {this.state.values[i]} </mark> 
-       <span value={el||''} onChange={this.handleBirthdayChange.bind(this, i)}> geboren am <mark> {this.state.valuesbirthday[i]}</mark></span>
-       </li>
+        <li>
+        <span> <mark>{this.state.values[i]} </mark></span> 
+        <span> geboren am <mark> {this.state.valuesbirthday[i]}</mark></span>
+        </li>
       </div>         
   )
-}
-
-
-handleNameChange(i, event) {
-  let values = [...this.state.values];
-  values[i] = event.target.value;
-  this.setState({ values });
-  console.log("values" , values)
- 
-}
-handleBirthdayChange(i, event) {
-  let valuesbirthday = [...this.state.values];
-  valuesbirthday[i] = event.target.value;
-  this.setState({ valuesbirthday });
-  console.log("valuesbirthday" , valuesbirthday)   
 }
 
 
@@ -92,6 +79,18 @@ handleBirthdayChange(i, event) {
     values[i] = event.target.value;
     this.setState({ values });
     console.log("values" , values)
+   }else{
+    let nam = i.target.name;
+    let val = i.target.value;
+    console.log(nam ,val);
+    this.setState({[nam]: val})
+   } 
+ }
+ myChangeBirthday(i, event) {
+  if(event){
+    let valuesbirthday = [...this.state.valuesbirthday];
+    valuesbirthday[i] = event.target.value;
+    this.setState({ valuesbirthday });
    }else{
     let nam = i.target.name;
     let val = i.target.value;
@@ -132,14 +131,16 @@ doc.save('My-Document.pdf');
   render() {
     const { t } = this.props;
     return (
-      <Jumbotron>
-        <Row>
-          <Col>
-        <h1>{t('familyUnion')}</h1>
-        <p>
-        {t('familyText')}
-        </p>
-        
+      <Container>
+        <div >
+          <Card.Body>
+            <Card.Title>{t('familyUnion')}</Card.Title>
+            < Card.Text>{t('familyText')} </Card.Text>
+          </Card.Body>
+        </div>
+      <Row>
+        <Col>
+        <Jumbotron>
         <Form>
           <Form.Group controlId="formBasicEmail">
             <Form.Label>{t('fillForm')}</Form.Label>
@@ -201,10 +202,7 @@ doc.save('My-Document.pdf');
             <Form.Control type="date" placeholder="please enter your wife's name" name="userdateofsubstitution"  onChange={this.myChangeHandler}/>
           </Form.Group>
 
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>{t('country')}</Form.Label>
-            <Form.Control type="text" name="usercountry"  onChange={this.myChangeHandler}/>
-          </Form.Group>
+            <SelectCountry />
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>{t('adress')} in {t('country')}</Form.Label>
@@ -226,7 +224,7 @@ doc.save('My-Document.pdf');
             <Form.Control type="date" name="userwifesbirthday" onChange={this.myChangeHandler} />
           </Form.Group>
         </Form>
-        
+        </Jumbotron>
       <form>
           {this.createUI()}
       <Button variant="warning" onClick={this.addClick.bind(this)}> {t('addkinder')} </Button>
@@ -266,7 +264,7 @@ doc.save('My-Document.pdf');
                  <span> <mark>{this.state.userwifesname !== ""? this.state.userwifesname:"........"}</mark>  <mark>{this.state.userwifessurname !== ""? this.state.userwifessurname:"........"}</mark> </span> ,  
                 geboren am <span> <mark>{this.state.userwifesbirthday !== ""? this.state.userwifesbirthday:"........"}</mark> </span> 
                 für die Kinder,
-                 <ul onSubmit={this.handleSubmit}>
+                 <ul>
                      {this.createUIListName()} 
                  </ul>
                  , für die alle türkische Staatsangehörige
@@ -312,10 +310,8 @@ doc.save('My-Document.pdf');
              </div>
 
             <img id="image" alt=""/>
-        
-        
-       </Row>
-      </Jumbotron>   
+            </Row>
+            </Container> 
     );
   }
 }

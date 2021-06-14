@@ -20,6 +20,8 @@
     "print-js": "^1.5.0",
     "react": "^16.14.0",
     "react-bootstrap": "^1.2.2",
+    "react-bootstrap-country-select": "^0.7.12",
+    "react-country-region-selector": "^3.1.0",
     "react-dom": "^16.13.1",
     "react-i18next": "^11.10.0",
     "react-list-input": "^1.1.0",
@@ -30,6 +32,7 @@
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
     "react-select": "^3.1.0",
+    "react-select-country-list": "^2.2.3",
     "react-to-print": "^2.12.0"
   },
   "scripts": {

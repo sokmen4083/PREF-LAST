@@ -1,6 +1,7 @@
 export const TRANSLATIONS_KR = {
   document: 'BELGEYN',
   language: 'ZIMAN',
+  info: 'Tu agahdarî li ser vê rûpelê nayê hilanîn.',
   copy: 'Copyright',
   creat: 'afirandin ji hêla',
   PETITIONS: 'XWESTIN',

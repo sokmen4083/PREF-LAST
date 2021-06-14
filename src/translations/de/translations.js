@@ -1,6 +1,7 @@
 export const TRANSLATIONS_DE = {
     document: 'DOKUMENTS',
     language: 'SPRACHEN',
+    info: 'Auf dieser Seite werden keine Informationen gespeichert.',
     copy: 'Urheberrechte',
     creat: 'erstellt von',
     PETITIONS: 'PETITIONEN',

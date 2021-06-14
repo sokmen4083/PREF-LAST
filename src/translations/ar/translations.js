@@ -1,6 +1,7 @@
 export const TRANSLATIONS_AR = {
     document: 'مستندات',
     language: 'اللغات',
+    info: 'لا توجد معلومات مخزنة في هذه الصفحة.',
     copy: 'حقوق النشر',
     creat: 'انشأ من قبل',
     PETITIONS: 'التماسات',
