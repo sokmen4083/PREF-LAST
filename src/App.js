@@ -84,12 +84,11 @@ function App() {
                  <Alert variant="success">
                     <p>{t('info')}</p>
                 </Alert>
-                    <Route path='/PrefDocuments'  component={PrefDocuments}/>
                     <Route path='/FamilyUnion' component={Family}/>                   
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
                     <Route path='/CampChange' component={CampChange}/>
-                    <Route path='/'   component={PrefDocuments}/>
+                    <Route path='/' exact={true}  component={PrefDocuments}/>
             </Col>
           </Row>
         </Container>
