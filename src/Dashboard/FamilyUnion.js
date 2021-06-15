@@ -1,5 +1,6 @@
-import React, { Component } from 'react';
-import SelectCountry from './SelectCountry'
+import React, { Component, useState, useMemo} from 'react';
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
 import { Jumbotron, Form, Row, Col, Button, Card, Container} from 'react-bootstrap';
 import jsPDF from 'jspdf';
 import $ from 'jquery';
@@ -40,6 +41,7 @@ import { withTranslation } from 'react-i18next'
         usersecondchildbirthday: Date,
         values: [],
         valuesbirthday: [Date],
+        country: '',
       };
   }
   createUI(){
@@ -127,9 +129,23 @@ doc.fromHTML(elementHTML, 15, 15, {
 // Save the PDF
 doc.save('My-Document.pdf');
 }
+selectCountry (val) {
+  this.setState({ country: val });
+}
 
+CountrySelector() {
+  const [value, setValue] = useState('')
+  const options = useMemo(() => countryList().getData(), [])
+
+  const changeHandler = value => {
+    setValue(value)
+  }
+
+  return <Select options={options} value={value} onChange={changeHandler} />
+}
   render() {
     const { t } = this.props;
+    const { country } = this.state;
     return (
       <Container>
         <div >
@@ -202,7 +218,12 @@ doc.save('My-Document.pdf');
             <Form.Control type="date" placeholder="please enter your wife's name" name="userdateofsubstitution"  onChange={this.myChangeHandler}/>
           </Form.Group>
 
-            <SelectCountry />
+          <Form.Group controlId="formBasicEmail">
+            <Form.Label>{t('country')}</Form.Label>
+            <Form.Control name="usercountry" as="select"  >
+              <option value={country} onChange={(val) => this.selectCountry(val)}></option>
+              </Form.Control>
+          </Form.Group> 
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>{t('adress')} in {t('country')}</Form.Label>
@@ -224,11 +245,11 @@ doc.save('My-Document.pdf');
             <Form.Control type="date" name="userwifesbirthday" onChange={this.myChangeHandler} />
           </Form.Group>
         </Form>
-        </Jumbotron>
       <form>
           {this.createUI()}
       <Button variant="warning" onClick={this.addClick.bind(this)}> {t('addkinder')} </Button>
       </form>
+      </Jumbotron>
         </Col>
         <Col>
        

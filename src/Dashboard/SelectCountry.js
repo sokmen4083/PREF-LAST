@@ -1,36 +1,16 @@
-import React, { Component } from 'react';
-import { Form } from 'react-bootstrap';
-import { CountryDropdown} from 'react-country-region-selector';
-import { withTranslation } from 'react-i18next'
+import React, { useState, useMemo } from 'react'
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
 
+function CountrySelector() {
+  const [value, setValue] = useState('')
+  const options = useMemo(() => countryList().getData(), [])
 
-
-class SelectCountry extends Component {
-  constructor (props) {
-    super(props);
-    this.state = { country: '' };
+  const changeHandler = value => {
+    setValue(value)
   }
 
-  selectCountry (val) {
-    this.setState({ country: val });
-  }
-
-
-  render () {
-    const { t } = this.props;
-    const { country } = this.state;
-    return (
-      <div>
-          <Form.Group controlId="formBasicEmail">
-            <Form.Label>{t('country')}</Form.Label>
-            <CountryDropdown>
-            <Form.Control name="usercountry" value={country} onChange={(val) => this.selectCountry(val)} />
-            </CountryDropdown>
-          </Form.Group>
-        
-      </div>
-    );
-  }
+  return <Select options={options} value={value} onChange={changeHandler} />
 }
 
-export default withTranslation()(SelectCountry)
+export default CountrySelector
