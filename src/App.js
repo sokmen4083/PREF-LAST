@@ -36,7 +36,7 @@ function App() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                   <Nav className="mr-auto">
-                      <Nav.Link><Link to="/PrefDocuments">PREF {t('document')}</Link></Nav.Link>
+                      <Nav.Link><Link to="">PREF {t('document')}</Link></Nav.Link>
                   </Nav>
                 </Navbar.Collapse>
                 <NavDropdown title={t('language')} id="collasible-nav-dropdown">
@@ -84,11 +84,11 @@ function App() {
                  <Alert variant="success">
                     <p>{t('info')}</p>
                 </Alert>
+                    <Route path='/' exact={true}  component={PrefDocuments}/>
                     <Route path='/FamilyUnion' component={Family}/>                   
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
                     <Route path='/CampChange' component={CampChange}/>
-                    <Route path='/'   component={PrefDocuments}/>
             </Col>
           </Row>
         </Container>
