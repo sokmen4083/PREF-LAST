@@ -1,6 +1,5 @@
-import React, { Component, useState, useMemo} from 'react';
-import Select from 'react-select'
-import countryList from 'react-select-country-list'
+import React, { Component } from 'react';
+import SelectCountry from './SelectCountry'
 import { Jumbotron, Form, Row, Col, Button, Card, Container} from 'react-bootstrap';
 import jsPDF from 'jspdf';
 import $ from 'jquery';
@@ -30,7 +29,7 @@ import { withTranslation } from 'react-i18next'
         usercanton: '',
         userdateofcametoswitzerland: Date,
         userdateofsubstitution: Date,
-        usercountry: '',
+        country: [],
         useradressincountry: '',
         userwifesname: '',
         userwifessurname:'',
@@ -41,9 +40,10 @@ import { withTranslation } from 'react-i18next'
         usersecondchildbirthday: Date,
         values: [],
         valuesbirthday: [Date],
-        country: '',
       };
   }
+  
+
   createUI(){
     const { t } = this.props;
     return this.state.values.map((el, i) => 
@@ -88,6 +88,19 @@ import { withTranslation } from 'react-i18next'
     this.setState({[nam]: val})
    } 
  }
+ handleSelectChange(i,e) {
+   if(e){
+     let country = [...this.state.country]
+     country[i] = e.target.value;
+     this.setState({ country });
+   }
+   else{
+    let nam = i.target.name;
+    let val = i.target.value;
+    console.log(nam ,val);
+    this.setState({[nam]: val})
+   } 
+}
  myChangeBirthday(i, event) {
   if(event){
     let valuesbirthday = [...this.state.valuesbirthday];
@@ -129,23 +142,9 @@ doc.fromHTML(elementHTML, 15, 15, {
 // Save the PDF
 doc.save('My-Document.pdf');
 }
-selectCountry (val) {
-  this.setState({ country: val });
-}
 
-CountrySelector() {
-  const [value, setValue] = useState('')
-  const options = useMemo(() => countryList().getData(), [])
-
-  const changeHandler = value => {
-    setValue(value)
-  }
-
-  return <Select options={options} value={value} onChange={changeHandler} />
-}
   render() {
     const { t } = this.props;
-    const { country } = this.state;
     return (
       <Container>
         <div >
@@ -217,13 +216,10 @@ CountrySelector() {
             <Form.Label>{t('substitution')}</Form.Label>
             <Form.Control type="date" placeholder="please enter your wife's name" name="userdateofsubstitution"  onChange={this.myChangeHandler}/>
           </Form.Group>
-
-          <Form.Group controlId="formBasicEmail">
+          <Form.Group controlId="formBasicEmail" >
             <Form.Label>{t('country')}</Form.Label>
-            <Form.Control name="usercountry" as="select"  >
-              <option value={country} onChange={(val) => this.selectCountry(val)}></option>
-              </Form.Control>
-          </Form.Group> 
+            <SelectCountry name="country"  />
+            </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
             <Form.Label>{t('adress')} in {t('country')}</Form.Label>
@@ -301,14 +297,14 @@ CountrySelector() {
                 Am <span id="user-comeDate"> <mark>{this.state.userdateofcametoswitzerland !== ""? this.state.userdateofcametoswitzerland:"........"}</mark> </span> habe ich in der Schweiz einen Asylantrag gestellt.
                 Schliesslich wurde ich am <span id="user-asylDate"> <mark>{this.state.userdateofsubstitution !== ""? this.state.userdateofsubstitution:"........"}</mark> </span> als Flüchtling anerkannt.
                 Danach wurde ich dem Kanton <span id="user-canton"> <mark>{this.state.usercanton !== ""? this.state.usercanton:"........"}</mark> </span> zugeteilt, wo ich zurzeit
-                wohnhaft bin. Jedoch ist meine Familie noch in der <span id="user-country"> <mark>{this.state.usercountry !== ""? this.state.usercountry:"........"}</mark> </span> und
+                wohnhaft bin. Jedoch ist meine Familie noch in der <span id="user-country"> <mark>{this.state.country !== ""? this.state.country:"........"}</mark> </span> und
                 sie ist in grosser Gefahr. Denn es wird nicht lange dauern bis die
-                <span id="user-country"> <mark>{this.state.usercountry !== ""? this.state.usercountry:"........"}</mark> </span> Regierung meinen Aufenthalt in der Schweiz ausfindig
+                <span id="user-country"> <mark>{this.state.country !== ""? this.state.country:"........"}</mark> </span> Regierung meinen Aufenthalt in der Schweiz ausfindig
                 macht. In diesem Fall würde man wahrscheinlich meiner Familie eine Ausreisesperre anordnen. Ähnliche
                 Fälle sind sicherlich auch Ihnen bekannt.
             </p>
 
-            <p><span id="user-country"> <mark>{this.state.usercountry !== ""? this.state.usercountry:"........"}</mark> </span> Adresse: <mark>{this.state.useradressincountry !== ""? this.state.useradressincountry:"........"}</mark>
+            <p><span id="user-country"> <mark>{this.state.country !== ""? this.state.country:"........"}</mark> </span> Adresse: <mark>{this.state.useradressincountry !== ""? this.state.useradressincountry:"........"}</mark>
           </p>
             <p>
                 Ich ersuche Sie deshalb, die Einreise meiner Familienangehörigen in die Schweiz im Sinne des Art. 51
