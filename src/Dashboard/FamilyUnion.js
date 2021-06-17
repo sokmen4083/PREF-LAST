@@ -6,7 +6,6 @@ import $ from 'jquery';
 import { withTranslation } from 'react-i18next'
 
 
-
  class Family extends Component 
 {
 
@@ -29,7 +28,7 @@ import { withTranslation } from 'react-i18next'
         usercanton: '',
         userdateofcametoswitzerland: Date,
         userdateofsubstitution: Date,
-        country: [],
+        country: null,
         useradressincountry: '',
         userwifesname: '',
         userwifessurname:'',
@@ -218,7 +217,8 @@ doc.save('My-Document.pdf');
           </Form.Group>
           <Form.Group controlId="formBasicEmail" >
             <Form.Label>{t('country')}</Form.Label>
-            <SelectCountry name="country"  />
+            <Form.Control type="text" name="country"  onChange={this.myChangeHandler}/>
+            <SelectCountry name="country" />
             </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
