@@ -14,6 +14,7 @@ import { withTranslation } from 'react-i18next'
       var today = new Date(),
             date = (today.getDate() + '/' + (today.getMonth() + 1) +  '/' + today.getFullYear()) ;
       this.myChangeHandler = this.myChangeHandler.bind(this);
+      this.handleSelectChange = this.handleSelectChange.bind(this);
       this.state = {
         date: date,
         username: '',
@@ -28,7 +29,7 @@ import { withTranslation } from 'react-i18next'
         usercanton: '',
         userdateofcametoswitzerland: Date,
         userdateofsubstitution: Date,
-        country: null,
+        country: [],
         useradressincountry: '',
         userwifesname: '',
         userwifessurname:'',
@@ -90,12 +91,12 @@ import { withTranslation } from 'react-i18next'
  handleSelectChange(i,e) {
    if(e){
      let country = [...this.state.country]
-     country[i] = e.target.value;
+     country[i] = e.target.country.value;
      this.setState({ country });
    }
    else{
     let nam = i.target.name;
-    let val = i.target.value;
+    let val = i.target.country.value;
     console.log(nam ,val);
     this.setState({[nam]: val})
    } 
@@ -218,7 +219,7 @@ doc.save('My-Document.pdf');
           <Form.Group controlId="formBasicEmail" >
             <Form.Label>{t('country')}</Form.Label>
             <Form.Control type="text" name="country"  onChange={this.myChangeHandler}/>
-            <SelectCountry name="country" />
+            <SelectCountry name="country" onChange={this.myChangeHandler}/>
             </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
