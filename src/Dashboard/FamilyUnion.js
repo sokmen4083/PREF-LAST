@@ -1,20 +1,18 @@
-import React, { Component } from 'react';
-import SelectCountry from './SelectCountry'
+import React,{ Component } from "react";
+import CountryList from './SelectCountry'
 import { Jumbotron, Form, Row, Col, Button, Card, Container} from 'react-bootstrap';
 import jsPDF from 'jspdf';
 import $ from 'jquery';
 import { withTranslation } from 'react-i18next'
 
 
- class Family extends Component 
-{
+ class Family extends Component{
 
   constructor(props) {
       super(props);
       var today = new Date(),
             date = (today.getDate() + '/' + (today.getMonth() + 1) +  '/' + today.getFullYear()) ;
       this.myChangeHandler = this.myChangeHandler.bind(this);
-      this.handleSelectChange = this.handleSelectChange.bind(this);
       this.state = {
         date: date,
         username: '',
@@ -29,7 +27,6 @@ import { withTranslation } from 'react-i18next'
         usercanton: '',
         userdateofcametoswitzerland: Date,
         userdateofsubstitution: Date,
-        country: [],
         useradressincountry: '',
         userwifesname: '',
         userwifessurname:'',
@@ -40,6 +37,7 @@ import { withTranslation } from 'react-i18next'
         usersecondchildbirthday: Date,
         values: [],
         valuesbirthday: [Date],
+        country: [],
       };
   }
   
@@ -80,27 +78,14 @@ import { withTranslation } from 'react-i18next'
     let values = [...this.state.values];
     values[i] = event.target.value;
     this.setState({ values });
-    console.log("values" , values)
    }else{
     let nam = i.target.name;
     let val = i.target.value;
-    console.log(nam ,val);
     this.setState({[nam]: val})
    } 
  }
- handleSelectChange(i,e) {
-   if(e){
-     let country = [...this.state.country]
-     country[i] = e.target.country.value;
-     this.setState({ country });
-   }
-   else{
-    let nam = i.target.name;
-    let val = i.target.country.value;
-    console.log(nam ,val);
-    this.setState({[nam]: val})
-   } 
-}
+
+ 
  myChangeBirthday(i, event) {
   if(event){
     let valuesbirthday = [...this.state.valuesbirthday];
@@ -145,6 +130,7 @@ doc.save('My-Document.pdf');
 
   render() {
     const { t } = this.props;
+    const { value } = this.props;
     return (
       <Container>
         <div >
@@ -219,7 +205,7 @@ doc.save('My-Document.pdf');
           <Form.Group controlId="formBasicEmail" >
             <Form.Label>{t('country')}</Form.Label>
             <Form.Control type="text" name="country"  onChange={this.myChangeHandler}/>
-            <SelectCountry name="country" onChange={this.myChangeHandler}/>
+            <CountryList  name="country" />
             </Form.Group>
 
           <Form.Group controlId="formBasicEmail">
@@ -300,12 +286,12 @@ doc.save('My-Document.pdf');
                 Danach wurde ich dem Kanton <span id="user-canton"> <mark>{this.state.usercanton !== ""? this.state.usercanton:"........"}</mark> </span> zugeteilt, wo ich zurzeit
                 wohnhaft bin. Jedoch ist meine Familie noch in der <span id="user-country"> <mark>{this.state.country !== ""? this.state.country:"........"}</mark> </span> und
                 sie ist in grosser Gefahr. Denn es wird nicht lange dauern bis die
-                <span id="user-country"> <mark>{this.state.country !== ""? this.state.country:"........"}</mark> </span> Regierung meinen Aufenthalt in der Schweiz ausfindig
+                <span id="user-country"> <mark>{value !== ""? value:"........"}</mark> </span> Regierung meinen Aufenthalt in der Schweiz ausfindig
                 macht. In diesem Fall würde man wahrscheinlich meiner Familie eine Ausreisesperre anordnen. Ähnliche
                 Fälle sind sicherlich auch Ihnen bekannt.
             </p>
 
-            <p><span id="user-country"> <mark>{this.state.country !== ""? this.state.country:"........"}</mark> </span> Adresse: <mark>{this.state.useradressincountry !== ""? this.state.useradressincountry:"........"}</mark>
+            <p><span id="user-country"> <mark>{value !== ""? value:"........"}</mark> </span> Adresse: <mark>{this.state.useradressincountry !== ""? this.state.useradressincountry:"........"}</mark>
           </p>
             <p>
                 Ich ersuche Sie deshalb, die Einreise meiner Familienangehörigen in die Schweiz im Sinne des Art. 51
