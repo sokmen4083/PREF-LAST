@@ -26,7 +26,7 @@ export default function PrefDocuments() {
                   <Card.Text>
                   {t('familyText')}
                   </Card.Text>
-                  <Link to="./FamilyUnion">{t('goFamily')}</Link>
+                  <Link to="/FamilyUnion">{t('goFamily')}</Link>
                 </Card.Body>
               </Card>
             </Col>
