@@ -85,7 +85,6 @@ function App() {
                     <p>{t('info')}</p>
                 </Alert>
                     <Route path='/pref-last' exact={true}  component={PrefDocuments}/>
-                    <Route path='/'  component={PrefDocuments}/>
                     <Route path='/FamilyUnion' component={Family}/>                   
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
