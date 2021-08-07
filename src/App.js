@@ -84,7 +84,7 @@ function App() {
                  <Alert variant="success">
                     <p>{t('info')}</p>
                 </Alert>
-                    <Route path='/pref-last' exact={true}  component={PrefDocuments}/>
+                    <Route path='/' exact={true}  component={PrefDocuments}/>
                     <Route path='/FamilyUnion' component={Family}/>                   
                     <Route path='/fileCombination' component={FileCombination}/>
                     <Route path='/CantonChange' component={CantonChange}/>
